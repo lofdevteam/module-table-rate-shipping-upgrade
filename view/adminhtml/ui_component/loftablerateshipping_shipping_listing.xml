@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_TableRateShipping
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">loftablerateshipping_shipping_listing.loftablerateshipping_shipping_listing_data_source</item>
+            <item name="deps" xsi:type="string">loftablerateshipping_shipping_listing.loftablerateshipping_shipping_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">loftablerateshipping_shipping_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Shipping</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/new</item>
+            </item>
+            <item name="upload" xsi:type="array">
+                <item name="name" xsi:type="string">upload</item>
+                <item name="label" xsi:type="string" translate="true">Upload Shipping</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/upload</item>
+            </item>
+              <item name="exportcsv" xsi:type="array">
+                <item name="name" xsi:type="string">exportcsv</item>
+                <item name="label" xsi:type="string" translate="true">Export Shipping to CSV</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/exportcsv</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="loftablerateshipping_shipping_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">ShippingGridDataProvider</argument>
+            <argument name="name" xsi:type="string">loftablerateshipping_shipping_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">lofshipping_id</argument>
+            <argument name="requestFieldName" xsi:type="string">lofshipping_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                       <item name="indexField" xsi:type="string">lofshipping_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                    <caption translate="true">All Store Views</caption>
+                    <label translate="true">Purchase Point</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">ns = ${ $.ns }, componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+        <filterSearch name="fulltext"/>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="loftablerateshipping/shipping/MassDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you want to Delete selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="loftablerateshipping_shipping_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">loftablerateshipping_shipping_listing.loftablerateshipping_shipping_listing.listing_top.bookmarks</item>
+                    <item name="namespace" xsi:type="string">current</item>
+                </item>
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">loftablerateshipping_shipping_listing.loftablerateshipping_shipping_listing.loftablerateshipping_shipping_columns_editor</item>
+                        <item name="target" xsi:type="string">startEdit</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                            <item name="1" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">loftablerateshipping_shipping_listing.loftablerateshipping_shipping_listing.listing_top.bookmarks</item>
+                        <item name="root" xsi:type="string">columns.${ $.index }</item>
+                        <item name="namespace" xsi:type="string">current.${ $.storageConfig.root }</item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">lofshipping_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="lofshipping_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+         <column name="partner_id" class="Lof\TableRateShipping\Ui\Component\Listing\Columns\Name">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">text</item>
+                <item name="label" xsi:type="string" translate="true">Name</item>
+            </item>
+        </argument>
+        </column>
+        <column name="dest_country_id">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">text</item>
+                <item name="label" xsi:type="string" translate="true">Destination Country</item>
+            </item>
+        </argument>
+        </column>
+        <column name="dest_zip">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="filter" xsi:type="string">range</item>
+                    <item name="label" xsi:type="string" translate="true">Zip Code From</item>
+                </item>
+            </argument>
+        </column>
+        <column name="dest_region_id">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">range</item>
+                <item name="label" xsi:type="string" translate="true">Region code</item>
+            </item>
+        </argument>
+        </column>
+        <column name="dest_zip_to">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="filter" xsi:type="string">range</item>
+                    <item name="label" xsi:type="string" translate="true">Zip Code To</item>
+                </item>
+            </argument>
+        </column>
+        <column name="price">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">text</item>
+                <item name="label" xsi:type="string" translate="true">Price</item>
+            </item>
+        </argument>
+        </column>
+        <column name="weight_from">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">range</item>
+                <item name="label" xsi:type="string" translate="true">Weight From</item>
+            </item>
+        </argument>
+        </column>
+        <column name="weight_to">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">range</item>
+                <item name="label" xsi:type="string" translate="true">Weight To</item>
+            </item>
+        </argument>
+        </column>
+        <column name="cart_total">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Minimun Cart Total will been apply the rate</item>
+                </item>
+            </argument>
+        </column>
+        <column name="free_shipping">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">text</item>
+                <item name="label" xsi:type="string" translate="true">Minimun Order Total for Free Shipping</item>
+            </item>
+        </argument>
+        </column>
+        <column name="method_name">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">text</item>
+                <item name="filter" xsi:type="string">text</item>
+                <item name="label" xsi:type="string" translate="true">Shipping Method Name</item>
+            </item>
+        </argument>
+        </column>
+         <actionsColumn name="actions" class="Lof\TableRateShipping\Ui\Component\Listing\Columns\ShippingActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">lofshipping_id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

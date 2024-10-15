@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>
+
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_TableRateShipping
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/lof-tablerateshipping/tablerateshipping" method="POST">
+        <service class="Lof\TableRateShipping\Api\TableRateShippingRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Lof_TableRateShipping::shipping_save"/>
+        </resources>
+    </route>
+    <route url="/V1/lof-tablerateshipping/tablerateshipping/search" method="GET">
+        <service class="Lof\TableRateShipping\Api\TableRateShippingRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Lof_TableRateShipping::shipping_view"/>
+        </resources>
+    </route>
+    <route url="/V1/lof-tablerateshipping/tablerateshipping/:tableRateShippingId" method="GET">
+        <service class="Lof\TableRateShipping\Api\TableRateShippingRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Lof_TableRateShipping::shipping_view"/>
+        </resources>
+    </route>
+    <route url="/V1/lof-tablerateshipping/tablerateshipping/:tableRateShippingId" method="PUT">
+        <service class="Lof\TableRateShipping\Api\TableRateShippingRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Lof_TableRateShipping::shipping_save"/>
+        </resources>
+    </route>
+    <route url="/V1/lof-tablerateshipping/tablerateshipping/:tableRateShippingId" method="DELETE">
+        <service class="Lof\TableRateShipping\Api\TableRateShippingRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Lof_TableRateShipping::shipping_delete"/>
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+  * Landofcoder
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the Landofcoder.com license that is
+  * available through the world-wide-web at this URL:
+  * https://landofcoder.com/terms
+  *
+  * DISCLAIMER
+  *
+  * Do not edit or add to this file if you wish to upgrade this extension to newer
+  * version in the future.
+  *
+  * @category   Landofcoder
+  * @package    Lof_TableRateShipping
+  * @copyright  Copyright (c) 2021 Landofcoder (https://www.landofcoder.com/)
+  * @license    https://landofcoder.com/terms
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Lof_TableRateShipping::shipping" sortOrder="160" title="Shipping" module="Lof_TableRateShipping" resource="Lof_TableRateShipping::shipping_elements" parent="Lof_All::lof_all"/>
+		<add id="Lof_TableRateShipping::shipping_manager" title="Table Rate Shipping" module="Lof_TableRateShipping" sortOrder="20" parent="Lof_TableRateShipping::shipping" action="loftablerateshipping/shipping/index" resource="Lof_TableRateShipping::shipping"/>
+	</menu>
+</config>

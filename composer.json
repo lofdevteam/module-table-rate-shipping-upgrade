@@ -1,0 +1,31 @@
+{
+    "name": "landofcoder/module-table-rate-shipping",
+    "description": "Magento 2 Table Rate shipping creates an unrestricted number of shipping methods with distinctive rates based on a combination of conditions",
+    "keywords": [
+        "landofcoder",
+        "landofcoder table rate shipping",
+        "landofcoder table rate shipping extension"
+    ],
+    "type": "magento2-module",
+    "version": "1.0.6",
+    "homepage": "https://landofcoder.com",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Landofcoder",
+            "email": "landofcoder@gmail.com",
+            "role": "Magento 2 Lof Table Rate Shipping Extension"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Lof\\TableRateShipping\\": ""
+        }
+    }
+}
